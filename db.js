@@ -1,6 +1,6 @@
 const mongoose=require("mongoose")
 
-const connection=mongoose.connect(`mongodb+srv://princepatel:princepatel@cluster0.pwgjq.mongodb.net/?retryWrites=true&w=majority/trip`)
+const connection=mongoose.connect(`mongodb+srv://princepatel:princepatel@cluster0.pwgjq.mongodb.net/trip?retryWrites=true&w=majority`)
 
 
 const userSchema=mongoose.Schema({

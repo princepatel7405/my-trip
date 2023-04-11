@@ -1,16 +1,26 @@
 const express=require("express")
 const {connection, UserModal, }=require("./db")
 const app= express()
+const cors=require("cors")
 app.use(express.json())
-app.get("/",(req,res)=>{
+app.use(cors())
+app.get("/",async(req,res)=>{
     console.log("home");
-    res.send("Welcome to home ")
+    let users=await UserModal.find()
+    res.send(users)
 })
 app.post("/",async(req,res)=>{
     //console.log(req.body)
-    let user=new  UserModal(req.body)
-    await user.save()
-    res.send("Data Sent Successfully")
+    try {
+        
+        let user=new  UserModal(req.body)
+        await user.save()
+        res.send("Data Sent Successfully")
+    } catch (error) {
+        res.send({
+            "msg": error.message
+        });
+    }
 
 })
 
